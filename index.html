@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ritsu | Visual Designer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<header>
+  <h1>ritsu</h1>
+  <div class="sub">Visual Designer / Freelance</div>
+</header>
+
+<section>
+<h2>PROFILE</h2>
+<p>
+ritsu / Visual Designer<br>
+スライド・資料デザインを中心に、視覚的に伝わる構成とレイアウトを制作しています。
+</p>
+</section>
+
+<section>
+<h2>ABOUT</h2>
+<p>
+情報の「わかりにくさ」を、構造とビジュアルで整理することを得意としています。  
+落ち着いた表現をベースに、プレゼン・資料・デザインを設計します。<br>
+また、Web、資料、プレゼンテーションなど、「情報をどう見せるか」を軸にデザインしており、見た目をきれいにするだけでなく、<br>
+「何を伝えたいのか」「どこを見てほしいのか」を整理し、 見る人が迷わない構成を作ることを大切にしています。<br>
+デザインを通して、伝えたい内容が正しく、自然に届くことを目指しています。
+</p>
+</section>
+
+<section>
+<h2>SERVICES</h2>
+<p>
+・PowerPoint / Google Slides デザイン<br>
+・プレゼン資料構成<br>
+・ビジュアルレイアウト<br>
+・デザインテンプレート制作<br>
+※ その他ご相談ください
+</p>
+</section>
+
+<section>
+<h2>SAMPLE WORKS</h2>
+
+<!-- サンプルのやつ（雑貨） -->
+
+<div class="grid">
+  <img src="image\Wireframe - 2.png" onclick="openWorks(0)">
+  <img src="image\紳士服.png" onclick="openWorks(1)">
+  <img src="image\紳士服2.png" onclick="openWorks(2)">
+  <img src="image\Wireframe - 3.png" onclick="openWorks(3)">
+</div>
+</section>
+
+<!-- //サンプルのポートフォリオ -->
+
+<section>
+<h2>SLIDES</h2>
+<div class="grid">
+  <img src="image\portfolio.png" onclick="openSlides(0)">
+  <img src="image\Profile.png" onclick="openSlides(1)">
+  <img src="image\About.png" onclick="openSlides(2)">
+  <img src="image\sample works.png" onclick="openSlides(3)">
+  <img src="image\contact.png" onclick="openSlides(4)">
+</div>
+</section>
+
+<section>
+<h2>CONTACT</h2>
+<p>
+無料相談はSNSのDMまたはメールにて<br>
+Twitter : Ritsu_designs<br>
+Instagram : ritsu.designs<br>
+Gmail : ritsu.designs@gmail.com
+</p>
+</section>
+
+<footer>© ritsu.design</footer>
+
+<div class="viewer" id="viewer">
+  <div class="close" onclick="closeViewer()">×</div>
+  <img id="viewerImg">
+  <div class="nav">
+    <span onclick="prev()">‹</span>
+    <span onclick="next()">›</span>
+  </div>
+</div>
+
+<script>
+let mode="works";
+let current=0;
+
+const works=["image\\Wireframe - 2.png","image\\紳士服.png","image\\紳士服2.png","image\\Wireframe - 3.png"];
+const slides=["image/portfolio.png","image/Profile.png","image/About.png","image/sample works.png","image/contact.png"];
+
+function openWorks(i){
+  mode="works"; current=i;
+  viewer.style.display="flex";
+  viewerImg.src=works[current];
+}
+
+function openSlides(i){
+  mode="slides"; current=i;
+  viewer.style.display="flex";
+  viewerImg.src=slides[current];
+}
+
+function closeViewer(){viewer.style.display="none";}
+function next(){
+  const list=mode==="works"?works:slides;
+  current=(current+1)%list.length;
+  viewerImg.src=list[current];
+}
+function prev(){
+  const list=mode==="works"?works:slides;
+  current=(current-1+list.length)%list.length;
+  viewerImg.src=list[current];
+}
+
+document.addEventListener("keydown",e=>{
+  if(viewer.style.display==="flex"){
+    if(e.key==="ArrowRight")next();
+    if(e.key==="ArrowLeft")prev();
+    if(e.key==="Escape")closeViewer();
+  }
+});
+</script>
+
+</body>
+</html>
